@@ -1,18 +1,10 @@
 const nock = require('nock')
 
-const { createMockRequest } = require('./http-stub')
+const { firstMockRequest, secondMockRequest, thirdMockRequest, fourthMockRequest, createMockRequest } = require('./http-stub')
 
 const { completeChallenge } = require('./challenge')
 
 const { isValidUrl, getIdFromUrl } = require('./utils')
-
-const firstMockRequest = {
-    path: '',
-    response: {
-        follow: 'https://www.letsrevolutionizetesting.com/challenge.json?id=756775492',
-        message: 'This is not the end',
-      }
-}
 
 jest.mock('./utils', () => {
   const originalModule = jest.requireActual('./utils')
@@ -37,12 +29,7 @@ describe('Challenge application', () => {
   it('should complete challenge successfully', async () => {
     const mockRequests = [
         firstMockRequest,
-        {
-            path: '?id=756775492',
-            response: {
-                message: 'Congratulations! You\'ve reached the end! Please add the code (or a link to a repo with the code in it) you used to solve it to your application. We\'ll be in touch shortly!'
-            }
-        }
+        secondMockRequest
     ]
 
     createMockRequest(mockRequests)
@@ -70,13 +57,7 @@ describe('Challenge application', () => {
   it('should complete challenge successfully when the response of a request contains an invalid url', async () => {
     const mockRequests = [
         firstMockRequest,
-        {
-            path: '?id=756775492',
-            response: {
-                follow: 'xxxxxx',
-                message: 'This is not the end',
-            }
-        }
+        thirdMockRequest
     ]
 
     createMockRequest(mockRequests)
@@ -103,13 +84,7 @@ describe('Challenge application', () => {
   it('should complete the challenge successfully and not enter an infinite loop when the response of a request is the challenge url and does not contain an id', async () => {
     const mockRequests = [
         firstMockRequest,
-        {
-            path: '?id=756775492',
-            response: {
-                follow: 'https://www.letsrevolutionizetesting.com/challenge.json',
-                message: 'This is not the end',
-            }
-        }
+        fourthMockRequest
     ]
 
     createMockRequest(mockRequests)
