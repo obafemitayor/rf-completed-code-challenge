@@ -21,6 +21,6 @@ To run the application, you need to follow these steps:
 ## Running the tests
 To run the tests:
 
-1. **Navigate to the Application Directory using the command above
+1. Navigate to the Application Directory using the command above
 
 2. Run the tests by executing this command `npm test` in the terminal.
