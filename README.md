@@ -18,7 +18,7 @@ To run the application, you need to follow these steps:
    
 4. Execute the application by running `node index.js` in the terminal.
 
-##Running the tests
+## Running the tests
 To run the tests:
 
 1. **Navigate to the Application Directory using the command above
