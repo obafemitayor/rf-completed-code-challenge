@@ -1,6 +1,6 @@
 const nock = require('nock')
 
-const { createNockRequest } = require('./nock-request-setup')
+const { createMockRequest } = require('./http-stub')
 
 const { completeChallenge } = require('./challenge')
 
@@ -45,7 +45,7 @@ describe('Challenge application', () => {
         }
     ]
 
-    createNockRequest(mockRequests)
+    createMockRequest(mockRequests)
 
     const logSpy = jest.spyOn(console, 'log')
 
@@ -79,7 +79,7 @@ describe('Challenge application', () => {
         }
     ]
 
-    createNockRequest(mockRequests)
+    createMockRequest(mockRequests)
 
     const logSpy = jest.spyOn(console, 'log')
 
@@ -112,7 +112,7 @@ describe('Challenge application', () => {
         }
     ]
 
-    createNockRequest(mockRequests)
+    createMockRequest(mockRequests)
 
     const logSpy = jest.spyOn(console, 'log')
 
